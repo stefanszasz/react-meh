@@ -3,14 +3,16 @@ var React = require('react'),
 
 var CommentList = React.createClass({
 	render: function () {
-		var elements = this.props.comments.map(c => { return <div>{c}</div> });
+		var elements = this.props.comments.map((c, index) => { 
+			return <div key={index}>{c}</div>
+		});
 		return <div className="comment-background">{elements}</div>
 	}
 });
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		return { comments: ["one", "two", "three"]}
+		return { comments: ["one", "two", "three", "four", "five"]}
 	},
 	handleSubmit: function(text) {
 		var newComments = this.state.comments.concat([text]);

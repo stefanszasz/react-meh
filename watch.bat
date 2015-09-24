@@ -1,1 +1,0 @@
-nodemon --exec "build.bat" --ignore www/

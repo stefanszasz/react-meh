@@ -1,1 +1,0 @@
-browserify app.js --debug --transform reactify --es6 > www\app.js
