@@ -1,8 +1,9 @@
 var React = require('react'),
+	_ = require('underscore'),
 	CommentEditor = require('./comment-editor.jsx');
 
 var CommentList = React.createClass({
-	render: function () {
+	render: function () { 
 		var elements = this.props.comments.map((c, index) => { 
 			return <div key={index}>{c}</div>
 		});
@@ -16,7 +17,8 @@ module.exports = React.createClass({
 	},
 	handleSubmit: function(text) {
 		var newComments = this.state.comments.concat([text]);
-		this.setState({ comments: newComments });
+		var shuffled = _.shuffle(newComments);
+		this.setState({ comments: shuffled });
 	},
 	render: function() { 
 		return (
