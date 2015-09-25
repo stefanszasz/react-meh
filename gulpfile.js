@@ -24,16 +24,17 @@ gulp.task('browserify', function() {
         console.log('Updating!');
         watcher.bundle() // Create new bundle that uses the cache for high performance
         .pipe(source('app.js'))    
-        .pipe(buffer())
-        //.pipe(uglify())
+        .pipe(buffer())        
         .pipe(gulp.dest('./www/'));
         console.log('Updated!', (Date.now() - updateStart) + 'ms');
-    }) 
+    })
+    .on('error', function() {
+        console.log('Errrr')
+    })
     .bundle() // Create the initial bundle when starting the task
     .pipe(source('app.js'))
-    //.pipe(plumber())
-    //.pipe(buffer())
-    //.pipe(uglify({mangle: false}))
+    .pipe(plumber())
+    .pipe(buffer())
     .pipe(gulp.dest('./www/'));
 });
 
@@ -41,7 +42,7 @@ gulp.task('browserify', function() {
 gulp.task('css', function () {
     gulp.watch('./src/public/*.css', function () {
         console.log('Updated css...');
-        return gulp.src('src/public/*.css')
+        return gulp.src('./src/public/*.css')
         .pipe(concat('css.css'))
         .pipe(gulp.dest('www/'));
     });

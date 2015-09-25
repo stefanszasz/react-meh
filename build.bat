@@ -1,0 +1,1 @@
+browserify src/app.js --debug --transform reactify > www/app.js

@@ -7,14 +7,13 @@ module.exports = React.createClass({
 		if (!text) return;
 
 		this.props.onCommentSubmit(text);
-
 		React.findDOMNode(this.refs.text).value = '';
 	},
 	render: function () {
 		return (
 			<form className="commentForm" onSubmit={this.handleSubmit}>
 		        <input type="text" placeholder="Say something..." ref="text" />
-		        <input type="submit" value="Post" />
+		        <input type="submit" className="btn btn-sm" value="Post" />
       		</form>
 			)
 	}
