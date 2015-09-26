@@ -2,7 +2,6 @@ var React = require('react');
 
 module.exports = React.createClass({
 	handleSubmit: function (evt) {
-		console.log('THIS: ' + this)
 		evt.preventDefault();
 		var text = React.findDOMNode(this.refs.text).value.trim();
 		if (!text) return;

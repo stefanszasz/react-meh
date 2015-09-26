@@ -1,5 +1,5 @@
 var React = require('react'),
-	CommentArea = require('./comments/comment-area.jsx'),
+	CommentArea = require('../components/comment-area.jsx'),
 	ready = require('domready');
 
 ready(function() {
