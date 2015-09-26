@@ -11,20 +11,20 @@ var CommentEntry = React.createClass({
 		var btn = <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 		var commentContainer = <div className="media-body btn-block">{userContent} {commentText}{btn}</div>	
 		var date = <small style={{color: '#aaa'}}>{moment(c.timeStamp).format('llll')}</small>
-		return <div key={this.props.index}>{commentContainer}{date}<br/></div>		
+		return <div>{commentContainer}{date}<br/></div>
 	}
 });
 
 var CommentList = React.createClass({
 	render: function () {
-		var elements = this.props.comments.map((c, index) => { 			
-			return <CommentEntry comment={c} index={index} />
+		var elements = this.props.comments.map(function(c, index) { 			
+			return <CommentEntry key={index} comment={c} />
 		}); 
 		return <div className="comment-background">{elements}</div>
 	}
 });
 
-module.exports = React.createClass({
+module.exports = React.createClass({ displayName: "Comment Area",
 	getInitialState: function() {
 		return { comments: [ 
 			{ userName: "Florin enghiular", text: "My first comment", timeStamp: Date.now() },
@@ -32,6 +32,15 @@ module.exports = React.createClass({
 			{ userName: "Hovidiu kony", text: "My first comment", timeStamp: Date.now() },
 			{ userName: "Media saturn enterprize", text: "My first comment", timeStamp: Date.now() }
 			] };
+	},
+	fetchCurrentIp: function() {
+		$.get('http://jsonip.com', function (json) {
+   			 this.setState({ip: json.ip});
+		}.bind(this));
+		console.log('Fetching current ip...')
+	},
+	componentDidMount: function () {
+		this.fetchCurrentIp();
 	},
 	handleSubmit: function(text) {
 		var newComments = this.state.comments.concat([{ text: text, timeStamp: Date.now(), userName: "John Doe" }]);		
@@ -42,6 +51,7 @@ module.exports = React.createClass({
 				<div className="panel panel-body">
 					<CommentList comments={this.state.comments} />
 					<CommentEditor onCommentSubmit={this.handleSubmit} />
+					<div>Your IP address is: {this.state.ip}</div>
 				</div>
 			);
 	}
