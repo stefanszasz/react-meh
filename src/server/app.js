@@ -6,7 +6,7 @@ var express = require('express'),
 	CommentArea = React.createFactory(require('../components/comment-area.jsx'));
 
 var app = express();
-app.use(express.static('views'));
+app.use(express.static('public'));
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');

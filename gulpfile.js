@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify');
  
 gulp.task('browserify', doBundle.bind(this, './www/'));
-gulp.task('server-render', doBundle.bind(this, './src/server/views/'));
+gulp.task('server-render', doBundle.bind(this, './src/server/public/'));
 
 // I added this so that you see how to run two watch tasks
 gulp.task('css', function () {
