@@ -11,8 +11,8 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (
-			<form className="commentForm" onSubmit={this.handleSubmit}>
-		        <input type="text" placeholder="Say something..." ref="text" />
+			<form className="commentForm" onSubmit={this.handleSubmit} method="post" action="/comment">
+		        <input type="text" name="text" placeholder="Say something..." ref="text" />
 		        <input type="submit" className="btn btn-sm" value="Post" />
       		</form>
 			)

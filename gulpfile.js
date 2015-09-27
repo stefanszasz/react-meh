@@ -51,7 +51,7 @@ function doBundle(outPath) {
         console.log('Updated!', (Date.now() - updateStart) + 'ms');
     })
     .on('error', function() {
-        console.log('Errrr')
+        console.log('Err')
     })
     .bundle() // Create the initial bundle when starting the task
     .pipe(source('app.js'))
