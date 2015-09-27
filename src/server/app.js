@@ -7,15 +7,21 @@ var express = require('express'),
 
 var app = express();
 app.use(express.static('public'));
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.set('view engine', 'hbs');
 
 app.get('/', function(req, res) {
-	var result = React.renderToString(CommentArea({}));
-	res.render('index', {
-		layout: false,
-		reactComponents: result
-	});
+	var comments = [ 
+			{ userName: "Florin enghiular", text: "My first comment", timeStamp: Date.now() },
+			{ userName: "Sese riect", text: "My first comment", timeStamp: Date.now() },
+			{ userName: "Ovidiu kony", text: "My first comment", timeStamp: Date.now() },
+			{ userName: "Media saturn enterprize", text: "My first comment", timeStamp: Date.now() }
+			];
+			
+	var component = CommentArea({ initialComments: comments });
+	var result = React.renderToString(component);
+	res.render('commentArea', { reactComponents: result, reactData: JSON.stringify(comments) });
 });
 
 app.listen(3000);

@@ -25,9 +25,9 @@ gulp.task('css', function () {
 gulp.task('css-server', function () {
     gulp.watch('./src/_public/*.css', function () {
         console.log('Updated css...');
-        return gulp.src('./src/server/views/*.css')
+        return gulp.src('./src/server/public/*.css')
         .pipe(concat('css.css'))
-        .pipe(gulp.dest('src/server/views/'));
+        .pipe(gulp.dest('src/server/public/'));
     });
 });
 

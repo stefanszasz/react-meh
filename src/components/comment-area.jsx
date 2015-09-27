@@ -16,22 +16,20 @@ var CommentEntry = React.createClass({
 });
 
 var CommentList = React.createClass({
+	getInitialProps: function() {
+		return { comments: [] }
+	},
 	render: function () {
 		var elements = this.props.comments.map(function(c, index) { 			
 			return <CommentEntry key={index} comment={c} />
-		}); 
+		});
 		return <div className="comment-background">{elements}</div>
 	}
 });
 
 module.exports = React.createClass({ displayName: "Comment Area",
 	getInitialState: function() {
-		return { comments: [ 
-			{ userName: "Florin enghiular", text: "My first comment", timeStamp: Date.now() },
-			{ userName: "Sese riect", text: "My first comment", timeStamp: Date.now() },
-			{ userName: "Hovidiu kony", text: "My first comment", timeStamp: Date.now() },
-			{ userName: "Media saturn enterprize", text: "My first comment", timeStamp: Date.now() }
-			] };
+		return { comments: this.props.initialComments };
 	},
 	fetchCurrentIp: function() {
 		$.get('http://jsonip.com', function (json) {
